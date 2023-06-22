@@ -190,8 +190,6 @@ char knownHeaders[] =    {'a', 'r', 'g', 'c', 'o', 's', 'f', 'b', 'n', 'd', 'p',
 int32_t knownValues[] = { 0,  5, 8000, 0,  0,  4,  2, 1, 0, 90, 10, 0, 0, 0, 0, 0, 100, 1, 2, 0, 10};
 int knownCount = 21;
 
-
-
 // f) stim trains
 // **** here is a map of what each array entry actually does:
 // 0: baseline (0) or pulse (1) states
