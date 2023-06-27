@@ -70,7 +70,7 @@ class csGUI(object):
         self.totalMQTTDataCount = 1
         self.curNotes = []
         self.useGUI=1
-        self.darkMode=0
+        self.darkMode=1
         
     # b) window generation
     def makeParentWindow(self,master,varDict,timingDict,visualDict,opticalDict):
@@ -101,6 +101,7 @@ class csGUI(object):
         if self.darkMode:
             self.dirPath_btn.configure(foreground='white')
             self.dirPath_btn.configure(highlightbackground='black') 
+            self.dirPath_btn.configure(fg='black')
             
         self.dirPath_label=Label(self.taskBar, text="Save Path:", justify=LEFT)
         self.dirPath_label.grid(row=startRow,column=leftCol,padx=0,sticky=W)
@@ -138,6 +139,8 @@ class csGUI(object):
         if self.darkMode:
             self.refreshCom_btn.configure(foreground='white')
             self.refreshCom_btn.configure(highlightbackground='black')
+            self.refreshCom_btn.configure(fg='black')
+            
             
         self.blank=Label(self.taskBar, text=" ——————————————–––",justify=LEFT)
         self.blank.grid(row=startRow+4,column=leftCol,padx=0,sticky=W)
@@ -314,6 +317,7 @@ class csGUI(object):
         if self.darkMode:
             self.tBtn_detection.configure(highlightbackground='black')
             self.tBtn_detection.configure(foreground='white')
+            self.tBtn_detection.configure(fg='black')
 
         self.tBtn_trialOpto = Button(self.taskBar,text="Task:Trial Opto",justify=LEFT,width=col1_width,\
             command=self.do_trialOpto)
@@ -322,6 +326,7 @@ class csGUI(object):
         if self.darkMode:
             self.tBtn_trialOpto.configure(highlightbackground='black')
             self.tBtn_trialOpto.configure(foreground='white')
+            self.tBtn_trialOpto.configure(fg='black')
 
         self.tBtn_simpleRecord = Button(self.taskBar,text="Task:Just Record",justify=LEFT,width=col1_width,\
             command=self.do_justRecord)
@@ -330,6 +335,7 @@ class csGUI(object):
         if self.darkMode:
             self.tBtn_simpleRecord.configure(highlightbackground='black')
             self.tBtn_simpleRecord.configure(foreground='white')
+            self.tBtn_simpleRecord.configure(fg='black')
 
         self.hpL=Label(self.taskBar, text="Hash Path:",justify=LEFT)
         self.hpL.grid(row=startRow+17,column=0,padx=0,sticky=W)
@@ -368,6 +374,7 @@ class csGUI(object):
         if self.darkMode:
             self.quitButton.configure(foreground='white')
             self.quitButton.configure(highlightbackground='black')
+            self.quitButton.configure(fg='black')
 
         self.devControlButton = Button(self.taskBar,text="Dev:Gen",justify=LEFT,width=col1_width,\
             command= lambda: self.makeDevControl(varDict))
@@ -375,6 +382,7 @@ class csGUI(object):
         if self.darkMode:
             self.devControlButton.configure(highlightbackground='black')
             self.devControlButton.configure(foreground='white')
+            self.devControlButton.configure(fg='black')
         
         self.tBtn_timeWin = Button(self.taskBar,text="Vars: Timing",justify=LEFT,width=col1_width,\
             command=lambda: self.makeTimingWindow(self,timingDict))
@@ -382,6 +390,7 @@ class csGUI(object):
         if self.darkMode:
             self.tBtn_timeWin.configure(highlightbackground='black')
             self.tBtn_timeWin.configure(foreground='white')
+            self.tBtn_timeWin.configure(fg='black')
 
         self.tBtn_visualWin = Button(self.taskBar,text="Vars: Sensory",justify=LEFT,width=col1_width,\
             command=lambda: self.makeVisualWindow(self,visualDict))
@@ -389,6 +398,7 @@ class csGUI(object):
         if self.darkMode:
             self.tBtn_visualWin.configure(highlightbackground='black')
             self.tBtn_visualWin.configure(foreground='white')
+            self.tBtn_visualWin.configure(fg='black')
 
         self.tBtn_opticalWin = Button(self.taskBar,text="Vars: Optical",justify=LEFT,width=col1_width,\
             command=lambda: self.makeOpticalWindow(self,opticalDict))
@@ -396,6 +406,7 @@ class csGUI(object):
         if self.darkMode:
             self.tBtn_opticalWin.configure(highlightbackground='black')
             self.tBtn_opticalWin.configure(foreground='white')
+            self.tBtn_opticalWin.configure(fg='black')
 
         self.tBtn_mqttWin = Button(self.taskBar,text="MQTT Opts",justify=LEFT,width=col1_width,\
             command=lambda: self.makeMQTTWindow(varDict))
@@ -403,6 +414,7 @@ class csGUI(object):
         if self.darkMode:
             self.tBtn_mqttWin.configure(highlightbackground='black')
             self.tBtn_mqttWin.configure(foreground='white')
+            self.tBtn_mqttWin.configure(fg='black')
 
         self.tBtn_notesWin = Button(self.taskBar,text="Notes",justify=LEFT,width=col1_width,\
             command=lambda: self.makeNotesWindow(varDict))
@@ -410,6 +422,7 @@ class csGUI(object):
         if self.darkMode:
             self.tBtn_notesWin.configure(highlightbackground='black')
             self.tBtn_notesWin.configure(foreground='white')
+            self.tBtn_notesWin.configure(fg='black')
         
         # Finish the window
         self.taskBar.pack(side=TOP, fill=X)
@@ -488,6 +501,7 @@ class csGUI(object):
         if self.darkMode:
             self.tBtn_updateTimingDict.configure(foreground='white')
             self.tBtn_updateTimingDict.configure(highlightbackground='black')
+            self.tBtn_updateTimingDict.configure(fg='black')
             
         self.tBtn_updateTimingDict.grid(row=999,column=0,padx=2,pady=2)
         
@@ -1631,7 +1645,8 @@ class csSerial(object):
         self.a=1
     
     def connectComObj(self,comPath,baudRate):
-        self.comObj = serial.Serial(comPath,baudRate,timeout=0)
+        # self.comObj = serial.Serial(comPath,baudRate,timeout=0)
+        self.comObj = serial.Serial(comPath,baudRate)
         self.comObj.close()
         self.comObj.open()
         return self.comObj
@@ -1934,6 +1949,7 @@ def initializeTeensy():
     while sChecked==0:
         [tTeensyState,sChecked]=csSer.checkVariable(teensy,'a',0.005)
 
+    print(sChecked)
     while tTeensyState != 0:
         print("not in 0, will force")
         teensy.write('a0>'.encode('utf-8'))
@@ -2169,7 +2185,7 @@ def initializeTasks():
         csVar.sesVarDict=csVar.updateDictFromTXT(csVar.sesVarDict,config)
     makeTrialVariables()
     # connect to the teensy
-    [csSer.teensy,csSer.tState] = initializeTeensy()
+    [csSer.teensy,csSer.tState] = initializeTeensy()   
     initializeLoadCell()
     csAIO.mAIO = mqttStart()
     csVar.sesVarDict['sessionOn']=1
@@ -2439,7 +2455,9 @@ def sendDACVariables(vTime,pTime,dTime,mTime,tTime):
 
 def runDetectionTask():
     csVar.sesVarDict['taskType']='detection'
+    print('made it into runDetectionTask')
     initializeTasks()
+    print('initialized tasks')
     while csVar.sesVarDict['sessionOn']:
         # try to execute the task.
         try:
@@ -2668,3 +2686,7 @@ elif useGUI==0:
 
 
 dd
+
+
+
+
